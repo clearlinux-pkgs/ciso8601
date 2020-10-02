@@ -4,7 +4,7 @@
 #
 Name     : ciso8601
 Version  : 2.1.3
-Release  : 3
+Release  : 4
 URL      : https://files.pythonhosted.org/packages/2c/da/626910cf8aca7ed2d5b34355eee8aeaaeb6ddd4e16f98d00a9e2ddad3a08/ciso8601-2.1.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/2c/da/626910cf8aca7ed2d5b34355eee8aeaaeb6ddd4e16f98d00a9e2ddad3a08/ciso8601-2.1.3.tar.gz
 Summary  : Fast ISO8601 date time parser for Python written in C
@@ -60,14 +60,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1584591075
+export SOURCE_DATE_EPOCH=1601678023
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
@@ -76,7 +76,7 @@ python3 setup.py build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-tox
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test || :
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
